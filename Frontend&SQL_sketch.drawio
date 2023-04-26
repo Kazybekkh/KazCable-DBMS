@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2023-04-25T10:28:55.181Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36" etag="ctJ2-r2r0gNWCdfASJBv" version="21.2.1" type="github">
+<mxfile host="app.diagrams.net" modified="2023-04-26T20:21:10.402Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36" etag="WAHKmYINQmvuRoyvhPwP" version="21.2.2" type="github">
   <diagram name="Page-1" id="5f0bae14-7c28-e335-631c-24af17079c00">
-    <mxGraphModel dx="1434" dy="739" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" background="none" math="0" shadow="0">
+    <mxGraphModel dx="713" dy="796" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" background="none" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -38,17 +38,6 @@
         </mxCell>
         <mxCell id="Pd0bTFjakyCUhLUkFTFs-12" value="- branch_id" style="text;strokeColor=#82b366;fillColor=#d5e8d4;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="tcUiR7HuP1pJMrSMLTzw-50" vertex="1">
           <mxGeometry y="300" width="140" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="Pd0bTFjakyCUhLUkFTFs-193" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.371;entryY=-0.07;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="tcUiR7HuP1pJMrSMLTzw-78" target="Pd0bTFjakyCUhLUkFTFs-143" edge="1">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="430" y="455" as="targetPoint" />
-            <Array as="points">
-              <mxPoint x="451" y="455" />
-            </Array>
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="tcUiR7HuP1pJMrSMLTzw-78" value="Java Class with instantiation&lt;br&gt;&lt;b&gt;OR &amp;amp; AND&lt;br&gt;&lt;/b&gt;SQL CRUD&lt;br&gt;(Create, Read, Update, Delete)" style="text;html=1;strokeColor=#d6b656;fillColor=#fff2cc;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
-          <mxGeometry x="20" y="400" width="110" height="110" as="geometry" />
         </mxCell>
         <mxCell id="Pd0bTFjakyCUhLUkFTFs-16" value="Branch" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;" parent="1" vertex="1">
           <mxGeometry x="260" y="660" width="140" height="150" as="geometry">
@@ -199,8 +188,8 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="Pd0bTFjakyCUhLUkFTFs-46" value="Labels" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;" parent="1" vertex="1">
-          <mxGeometry x="190" y="520" width="140" height="120" as="geometry">
+        <mxCell id="Pd0bTFjakyCUhLUkFTFs-46" value="&lt;b&gt;&lt;u&gt;Labels&lt;/u&gt;&lt;/b&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;" parent="1" vertex="1">
+          <mxGeometry x="670" y="560" width="140" height="120" as="geometry">
             <mxRectangle x="1140" y="-440" width="140" height="30" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
@@ -250,7 +239,7 @@
         <mxCell id="Pd0bTFjakyCUhLUkFTFs-80" value="- &lt;b&gt;Revenue = Price * Quantity Sold&lt;/b&gt;" style="text;strokeColor=#6c8ebf;fillColor=#dae8fc;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="Pd0bTFjakyCUhLUkFTFs-77" vertex="1">
           <mxGeometry y="90" width="240" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="Pd0bTFjakyCUhLUkFTFs-81" value="&lt;b&gt;- Cost = Quantity Sold (Qs) * Variable Cost&lt;/b&gt;" style="text;strokeColor=#6c8ebf;fillColor=#dae8fc;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="Pd0bTFjakyCUhLUkFTFs-77" vertex="1">
+        <mxCell id="Pd0bTFjakyCUhLUkFTFs-81" value="&lt;b&gt;- Cost = Quantity Sold (Qs) * Variable Cost&amp;nbsp;&lt;/b&gt;" style="text;strokeColor=#6c8ebf;fillColor=#dae8fc;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="Pd0bTFjakyCUhLUkFTFs-77" vertex="1">
           <mxGeometry y="120" width="240" height="30" as="geometry" />
         </mxCell>
         <mxCell id="Pd0bTFjakyCUhLUkFTFs-82" value="- &lt;b&gt;Quantity &lt;/b&gt;can be made" style="text;strokeColor=#6c8ebf;fillColor=#dae8fc;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="Pd0bTFjakyCUhLUkFTFs-77" vertex="1">
@@ -325,56 +314,8 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="Pd0bTFjakyCUhLUkFTFs-143" value="&lt;h1&gt;Relational Database&lt;br&gt;mySQL&lt;/h1&gt;" style="text;html=1;strokeColor=#666666;fillColor=#f5f5f5;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;fontColor=#333333;" parent="1" vertex="1">
+        <mxCell id="Pd0bTFjakyCUhLUkFTFs-143" value="&lt;h1&gt;Relational Database&lt;br&gt;schema&lt;/h1&gt;" style="text;html=1;strokeColor=#666666;fillColor=#f5f5f5;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;fontColor=#333333;" parent="1" vertex="1">
           <mxGeometry x="340" y="560" width="300" height="70" as="geometry" />
-        </mxCell>
-        <mxCell id="Pd0bTFjakyCUhLUkFTFs-144" value="&lt;h1&gt;non-Relational Database&lt;br&gt;noSQL&lt;/h1&gt;" style="text;html=1;strokeColor=#666666;fillColor=#f5f5f5;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;fontColor=#333333;" parent="1" vertex="1">
-          <mxGeometry x="750" y="560" width="300" height="70" as="geometry" />
-        </mxCell>
-        <mxCell id="Pd0bTFjakyCUhLUkFTFs-145" value="" style="endArrow=none;html=1;rounded=0;strokeWidth=4;" parent="1" edge="1">
-          <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="760" y="850" as="sourcePoint" />
-            <mxPoint x="760" y="670" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="Pd0bTFjakyCUhLUkFTFs-146" value="" style="endArrow=none;html=1;rounded=0;strokeWidth=4;" parent="1" edge="1">
-          <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="760" y="850" as="sourcePoint" />
-            <mxPoint x="970" y="850" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="Pd0bTFjakyCUhLUkFTFs-147" value="" style="endArrow=none;html=1;rounded=0;strokeWidth=4;fillColor=#f8cecc;strokeColor=#b85450;" parent="1" edge="1">
-          <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="760" y="850" as="sourcePoint" />
-            <mxPoint x="950" y="690" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="Pd0bTFjakyCUhLUkFTFs-148" value="Quantity Sold" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
-          <mxGeometry x="930" y="860" width="80" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="Pd0bTFjakyCUhLUkFTFs-149" value="Price of the product" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
-          <mxGeometry x="690" y="670" width="60" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="Pd0bTFjakyCUhLUkFTFs-151" value="" style="endArrow=none;html=1;rounded=0;strokeWidth=4;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" edge="1">
-          <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="760" y="680" as="sourcePoint" />
-            <mxPoint x="950" y="850" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="Pd0bTFjakyCUhLUkFTFs-152" value="Quantity Demanded" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
-          <mxGeometry x="940" y="810" width="60" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="Pd0bTFjakyCUhLUkFTFs-153" value="Quantity Supplied" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
-          <mxGeometry x="950" y="680" width="60" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="Pd0bTFjakyCUhLUkFTFs-154" value="Example of price elasticity of demand for a product&lt;b&gt;&amp;nbsp;GRAPH&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
-          <mxGeometry x="790" y="890" width="210" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="Pd0bTFjakyCUhLUkFTFs-156" value="uses for noSQL" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;arcSize=4;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" parent="1" vertex="1">
-          <mxGeometry x="840" y="930" width="160" height="85" as="geometry" />
-        </mxCell>
-        <mxCell id="Pd0bTFjakyCUhLUkFTFs-157" value="+graphs&lt;br&gt;+pictures" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;html=1;" parent="Pd0bTFjakyCUhLUkFTFs-156" vertex="1">
-          <mxGeometry y="50" width="160" height="35" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
