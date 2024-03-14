@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile>
+  <diagram>
+    <mxGraphModel>
+      <root>
+        <start label="Start Validation" type="start"/>
+
+        <input1 label="Get First Name"/>
+        <condition1 label="Valid First Name?"/>
+        <message1 label="Invalid First Name Message"/>
+        <return1 label="Return False"/>
+
+        <input2 label="Get Last Name"/>
+        <condition2 label="Valid Last Name?"/>
+        <message2 label="Invalid Last Name Message"/>
+        <return2 label="Return False"/>
+
+        <input3 label="Get Email"/>
+        <condition3 label="Valid Email?"/>
+        <message3 label="Invalid Email Message"/>
+        <return3 label="Return False"/>
+
+        <input4 label="Get Phone"/>
+        <condition4 label="Valid Phone?"/>
+        <message4 label="Invalid Phone Message"/>
+        <return4 label="Return False"/>
+
+        <comboBoxValidation label="ComboBox Validation"/>
+        <comboBoxLoop label="Loop Through ComboBoxes"/>
+        <comboBoxCondition label="Is ComboBox Selection Valid?"/>
+        <comboBoxMessage label="Invalid ComboBox Selection Message"/>
+        <comboBoxReturn label="Return False"/>
+
+        <end label="Return True" type="end"/>
+
+        <!-- Connectors -->
+        <connector1 source="start" target="input1"/>
+        <connector2 source="input1" target="condition1"/>
+        <connector3 source="condition1" target="message1" type="no"/>
+        <connector4 source="message1" target="return1"/>
+        
+        <connector5 source="condition1" target="input2" type="yes"/>
+        <connector6 source="input2" target="condition2"/>
+        <connector7 source="condition2" target="message2" type="no"/>
+        <connector8 source="message2" target="return2"/>
+        
+        <connector9 source="condition2" target="input3" type="yes"/>
+        <connector10 source="input3" target="condition3"/>
+        <connector11 source="condition3" target="message3" type="no"/>
+        <connector12 source="message3" target="return3"/>
+        
+        <connector13 source="condition3" target="input4" type="yes"/>
+        <connector14 source="input4" target="condition4"/>
+        <connector15 source="condition4" target="message4" type="no"/>
+        <connector16 source="message4" target="return4"/>
+        
+        <connector17 source="condition4" target="comboBoxValidation" type="yes"/>
+        <connector18 source="comboBoxValidation" target="comboBoxLoop"/>
+        <connector19 source="comboBoxLoop" target="comboBoxCondition"/>
+        <connector20 source="comboBoxCondition" target="comboBoxMessage" type="no"/>
+        <connector21 source="comboBoxMessage" target="comboBoxReturn"/>
+        
+        <loopConnector source="comboBoxCondition" target="comboBoxLoop" type="yes"/>
+        <finalConnector source="comboBoxLoop" target="end"/>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
+
