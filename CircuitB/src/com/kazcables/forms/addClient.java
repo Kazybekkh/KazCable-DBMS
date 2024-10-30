@@ -1,39 +1,51 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package com.kazcables.forms;
 
-import com.kazcabels.model.Branch;
-import com.kazcabels.model.Client;
-import com.kazcabels.model.Department;
-import com.kazcabels.model.HierarchyLevel;
-import com.kazcabels.model.Organization;
+import com.kazcables.model.Branch;
+import com.kazcables.model.Client;
+import com.kazcables.model.Employee;
+import com.kazcables.model.HierarchyLevel;
+import com.kazcables.model.Organization;
 import com.kazcables.recordview.ClientRecords;
-import java.util.List;
+import java.util.ArrayList;
+import java.util.HashMap;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
 public class addClient extends javax.swing.JPanel
 {
     private final ClientRecords clientRecords;
     private final Organization organization;
-    private final JDialog jd;
-    
-    public addClient(Organization org,ClientRecords clientRecords, JDialog jd)
+    private HashMap<String, Employee> salesmen;
+    public addClient(Organization org,ClientRecords clientRecords)
     {
         initComponents();
         
         this.clientRecords= clientRecords;
         this.organization = org;
-        this.jd = jd;
         
         String[] branchNames = this.organization.getBranchNames();
         DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>(branchNames);
         jcb_branch.setModel(model);
     }
 
+    public ClientRecords getClientRecords() {
+        return clientRecords;
+    }
+
+    public Organization getOrganization() {
+        return organization;
+    }
+
+    public HashMap<String, Employee> getSalesmen() {
+        return salesmen;
+    }
+
+    public void setSalesmen(HashMap<String, Employee> salesmen) {
+        this.salesmen = salesmen;
+    }
+
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -54,7 +66,6 @@ public class addClient extends javax.swing.JPanel
         jcb_countryCode = new javax.swing.JComboBox<>();
         btn_add = new javax.swing.JButton();
         btn_clear = new javax.swing.JButton();
-        btn_cancel = new javax.swing.JButton();
         jcb_assigned_to = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
 
@@ -88,13 +99,6 @@ public class addClient extends javax.swing.JPanel
 
         btn_clear.setText("Clear");
 
-        btn_cancel.setText("Cancel");
-        btn_cancel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_cancelActionPerformed(evt);
-            }
-        });
-
         jcb_assigned_to.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jcb_assigned_to.setEnabled(false);
 
@@ -125,10 +129,8 @@ public class addClient extends javax.swing.JPanel
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btn_add)
                         .addGap(18, 18, 18)
-                        .addComponent(btn_clear)
-                        .addGap(18, 18, 18)
-                        .addComponent(btn_cancel)))
-                .addGap(0, 30, Short.MAX_VALUE))
+                        .addComponent(btn_clear)))
+                .addGap(0, 35, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(28, 28, 28)
@@ -161,8 +163,7 @@ public class addClient extends javax.swing.JPanel
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_add)
-                    .addComponent(btn_clear)
-                    .addComponent(btn_cancel))
+                    .addComponent(btn_clear))
                 .addContainerGap(32, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
@@ -181,12 +182,11 @@ public class addClient extends javax.swing.JPanel
 
     private void jcb_branchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcb_branchActionPerformed
         Branch branch = this.organization.getBranches().get(jcb_branch.getSelectedIndex());
-        if (branch != null) {populateAssignedToComboBox(branch);}
+        if (branch != null) {
+            populateAssignedToComboBox(branch);
+        }
+        updateComponentStates();
     }//GEN-LAST:event_jcb_branchActionPerformed
-
-    private void btn_cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelActionPerformed
-        this.jd.dispose(); // close action
-    }//GEN-LAST:event_btn_cancelActionPerformed
     
     private boolean validateFields()
     {
@@ -217,40 +217,69 @@ public class addClient extends javax.swing.JPanel
             JOptionPane.showMessageDialog(null, "Please specify Client's Branch!");
             return false;
         }
+        if (jcb_assigned_to.getSelectedIndex()==0){
+            JOptionPane.showMessageDialog(null, "Please assign a salesman to the client");
+            return false;
+        }
         return true;
     }
-    private void saveClient()
+    private boolean saveClient()
     {
         String client_name = (String) tf_client_name.getText();
         String email = (String) tf_email.getText();
         String phone = (String) tf_phone.getText();
         int branch_id = jcb_branch.getSelectedIndex();
+        String assigned_to = (String)jcb_assigned_to.getSelectedItem().toString().trim().toLowerCase();
         
         Client client = new Client(client_name, branch_id, phone, email);
         
-        if (client!=null){
-            this.organization.addClient(client);
-            this.clientRecords.addRow(client.getRow());
-        }
-        else {JOptionPane.showMessageDialog(null, "Could not add client");}
-    }
-    public void populateAssignedToComboBox(Branch branch){
-        Department sales = branch.getSpecificDepartment(HierarchyLevel.SALES);
-        if (sales!=null)
-        {
-            List<String> salesReps = sales.getRolesTakenByEmployee().get("Sales Representative");
-            if (salesReps!=null)
-            {
-                String[] reps = salesReps.toArray(new String[0]);
-                DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>(reps);
-                jcb_assigned_to.setModel(model);
+        if (jcb_assigned_to.getSelectedIndex()!=0){
+            for (Employee salesman: salesmen.values()){
+                if (assigned_to.equals(salesman.getFullName().trim().toLowerCase())){
+                    client.setClient_id(salesman.getEmp_Id());
+                }
             }
         }
+        boolean added = this.organization.addClient(client);
+        if (added){
+            this.clientRecords.addClientRow(client.getRow());
+            this.clientRecords.getAdded().push(client.getClient_id());
+            clearFields();
+            return true;
+        }
+        else {
+            JOptionPane.showMessageDialog(null, "Could not add client");
+        }
+        return false;
+        
     }
-
+    public void populateAssignedToComboBox(Branch branch){
+        ArrayList<String> salesRep = new ArrayList<>();
+        salesRep.add("--Not Specified--");
+        salesmen = branch.getDepartments().get(HierarchyLevel.SALES).getEmployees();
+        for (Employee emp: salesmen.values()){
+            if (emp.getRole().getName().equals("Sales Representative")){
+                salesRep.add(emp.getFullName());
+            }
+        }
+        String[] reps = salesRep.toArray(new String[0]);
+        DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>(reps);
+        jcb_assigned_to.setModel(model);
+        jcb_assigned_to.setEnabled(true);
+        reps = null;
+    }
+    private void clearFields() {
+        tf_client_name.setText("");
+        tf_email.setText("");
+        tf_phone.setText("");
+        jcb_branch.setSelectedIndex(0);
+    }
+    private void updateComponentStates() {
+        boolean isBranchSelected = jcb_branch.getSelectedIndex() != 0;
+        jcb_assigned_to.setEnabled(isBranchSelected);
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_add;
-    private javax.swing.JButton btn_cancel;
     private javax.swing.JButton btn_clear;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jbl_phone;

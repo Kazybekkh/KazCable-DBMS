@@ -5,8 +5,20 @@
 package com.kazcables.util;
 
 // Holds log in info constants for easier access throughout classes
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
 public class Db {
-    public static final String URL = "jdbc:mysql://localhost:3306/employees";
-    public static final String USER = "root";
-    public static final String PASSWORD = "password";
+    public static Connection getConnection() throws SQLException {
+        // URL of the database
+        String url = "jdbc:mysql://localhost:3306/employees";
+        // Database username
+        String user = "root";
+        // Database password
+        String password = "password";
+        return DriverManager.getConnection(url, user, password);
+    }
+
 }

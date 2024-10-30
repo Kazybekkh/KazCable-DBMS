@@ -4,16 +4,25 @@
  */
 package com.kazcables.recordview;
 
+import static java.lang.Short.MAX_VALUE;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import static java.sql.DriverManager.getConnection;
+import static java.sql.DriverManager.getConnection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import static javax.swing.GroupLayout.Alignment.BASELINE;
+import static javax.swing.GroupLayout.Alignment.LEADING;
+import static javax.swing.GroupLayout.PREFERRED_SIZE;
 import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.LayoutStyle.ComponentPlacement.UNRELATED;
 import net.proteanit.sql.DbUtils;
+import static net.proteanit.sql.DbUtils.resultSetToTableModel;
 
 
-public class BranchRecords extends javax.swing.JPanel {
+public final class BranchRecords extends javax.swing.JPanel {
 
     ResultSet resultSet = null;
     Connection connection = null;
@@ -119,8 +128,20 @@ public class BranchRecords extends javax.swing.JPanel {
         catch(SQLException e){
             e.printStackTrace();
             JOptionPane.showMessageDialog(null, "Connection was unsuccessful!!");
+        } 
+    }
+    public void showDepartments(){
+        try{
+            connection = DriverManager.getConnection(url, user, password);
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery("select * from department");
+            branchList.setModel(DbUtils.resultSetToTableModel(resultSet));
+            connection.close();
         }
-        
+        catch(SQLException e){
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Connection was unsuccessful!!");
+        } 
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

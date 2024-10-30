@@ -1,19 +1,15 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
- */
 package com.kazcables.forms;
 
 import com.kazcables.util.Db;
 import com.kazcables.util.Hashing;
 import com.kazcables.util.Mail;
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,13 +21,15 @@ import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
+import javax.swing.JRadioButton;
 
-
-
-public class ForgotPassword extends javax.swing.JDialog 
+public final class ForgotPassword extends javax.swing.JDialog 
 {
     Connection connection = null;
-    
+    private static final Pattern LOWERCASE_PATTERN = Pattern.compile(".*[a-z].*");
+    private static final Pattern UPPERCASE_PATTERN = Pattern.compile(".*[A-Z].*");
+    private static final Pattern DIGIT_PATTERN = Pattern.compile(".*\\d.*");
+    private static final Pattern SYMBOL_PATTERN = Pattern.compile(".*[@$!%*?&].*");
     private String random;
     private String from = "";
     private String to = "";
@@ -61,12 +59,16 @@ public class ForgotPassword extends javax.swing.JDialog
         tf_email = new javax.swing.JTextField();
         jb_close = new javax.swing.JButton();
         jb_cancel = new javax.swing.JButton();
+        tf_username = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        btn_usernameSubmit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         lbl_verify.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
 
         btn_sendCode.setText("Send OTP");
+        btn_sendCode.setEnabled(false);
         btn_sendCode.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_sendCodeActionPerformed(evt);
@@ -82,12 +84,15 @@ public class ForgotPassword extends javax.swing.JDialog
         });
 
         lbl_email.setText("Email Address: ");
+        lbl_email.setEnabled(false);
 
         lbl_entryOTP.setText("Enter OTP");
         lbl_entryOTP.setEnabled(false);
 
         tf_entryOTP.setToolTipText("Only digits accepted");
         tf_entryOTP.setEnabled(false);
+
+        tf_email.setEnabled(false);
 
         jb_close.setText("Close");
         jb_close.setEnabled(false);
@@ -104,6 +109,15 @@ public class ForgotPassword extends javax.swing.JDialog
             }
         });
 
+        jLabel2.setText("Username");
+
+        btn_usernameSubmit.setText("submit");
+        btn_usernameSubmit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_usernameSubmitActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -116,40 +130,59 @@ public class ForgotPassword extends javax.swing.JDialog
                         .addComponent(jb_cancel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jb_close))
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lbl_entryOTP)
-                            .addComponent(lbl_email))
+                            .addComponent(lbl_email)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(8, 8, 8)
+                                .addComponent(jLabel2)))
                         .addGap(1, 1, 1)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tf_email)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(lbl_verify)
-                                    .addComponent(tf_entryOTP, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 94, Short.MAX_VALUE)))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btn_verifyOTP)
-                            .addComponent(btn_sendCode))))
+                                .addComponent(tf_username, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(36, 36, 36)
+                                .addComponent(btn_usernameSubmit)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(tf_email)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(lbl_verify)
+                                            .addComponent(tf_entryOTP, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(0, 146, Short.MAX_VALUE)))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(btn_sendCode)
+                                        .addGap(3, 3, 3))
+                                    .addComponent(btn_verifyOTP, javax.swing.GroupLayout.Alignment.TRAILING))))))
                 .addGap(22, 22, 22))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
+                .addContainerGap(36, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tf_username, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2)
+                    .addComponent(btn_usernameSubmit))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_sendCode)
+                    .addComponent(tf_email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbl_email))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btn_sendCode)
-                            .addComponent(lbl_email)
-                            .addComponent(tf_email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btn_verifyOTP)
-                            .addComponent(tf_entryOTP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(lbl_entryOTP))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                            .addComponent(tf_entryOTP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbl_entryOTP))
+                        .addGap(19, 19, 19))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btn_verifyOTP)
+                        .addGap(18, 18, 18)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -165,15 +198,24 @@ public class ForgotPassword extends javax.swing.JDialog
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_sendCodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_sendCodeActionPerformed
-        emailOTP();
-
+        String email = (String)tf_email.getText();
+        if (isValidEmail(email)){emailOTP(email);}
     }//GEN-LAST:event_btn_sendCodeActionPerformed
 
     private void btn_verifyOTPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_verifyOTPActionPerformed
         String otp = (String)tf_entryOTP.getText().trim();
-        if (otp.equals(random)){
-            lbl_verify.setText("Successfully verified");
-            createNewPassword();
+        if (otp.isEmpty()){
+            JOptionPane.showMessageDialog(rootPane, "OTP code cannot be empty", "validation error", 0);
+        }
+        else if (!otp.matches("\\d+")){
+            JOptionPane.showMessageDialog(rootPane, "OTP code has to have digits only", "validation error", 0);
+        }
+        else if (otp.length()!=6){
+            JOptionPane.showMessageDialog(rootPane, "OTP code has to be of length 6", "validation error", 0);
+        }
+        else{
+            String username = (String) tf_username.getText().trim();
+            verifyOTP(otp, username);
         }
     }//GEN-LAST:event_btn_verifyOTPActionPerformed
 
@@ -184,6 +226,17 @@ public class ForgotPassword extends javax.swing.JDialog
     private void jb_cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_cancelActionPerformed
         this.dispose();
     }//GEN-LAST:event_jb_cancelActionPerformed
+
+    private void btn_usernameSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_usernameSubmitActionPerformed
+        String user = (String) tf_username.getText().trim();
+        boolean exists = doesUsernameExist(user);
+        if (!exists){
+            JOptionPane.showMessageDialog(rootPane, "User "+user+" not found in the database", "404", 0);
+        }
+        tf_email.setEnabled(exists);
+        lbl_email.setEnabled(exists);
+        btn_sendCode.setEnabled(exists);
+    }//GEN-LAST:event_btn_usernameSubmitActionPerformed
 
     /**
      * @param args the command line arguments
@@ -213,22 +266,19 @@ public class ForgotPassword extends javax.swing.JDialog
         //</editor-fold>
 
         /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                ForgotPassword dialog = new ForgotPassword(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            ForgotPassword dialog = new ForgotPassword(new javax.swing.JFrame(), true);
+            dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                @Override
+                public void windowClosing(java.awt.event.WindowEvent e) {
+                    System.exit(0);
+                }
+            });
+            dialog.setVisible(true);
         });
     }
-    private void emailOTP(){
+    private void emailOTP(String email){
         // TODO add your handling code here:
-        String email = (String)tf_email.getText();
         String regex = "^[A-Za-z0-9+_.-]+@(.+)$";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(email);
@@ -253,7 +303,17 @@ public class ForgotPassword extends javax.swing.JDialog
             random = random + Integer.toString(r.nextInt(10));
         }
     }
-    public void createNewPassword()
+    private void verifyOTP(String otp, String username){
+        if (otp.equals(random)){
+            lbl_verify.setText("Successfully verified");
+            
+            createNewPassword(username);
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Wrong OTP!");
+        }
+    }
+    public void createNewPassword(String username)
     {
         this.dispose();
         JDialog jd = new JDialog(this, false);
@@ -264,9 +324,25 @@ public class ForgotPassword extends javax.swing.JDialog
 
         JButton btn = new JButton("Set Password");
         btn.addActionListener(e -> {
-            updatePassword(Hashing.hashPassword(new String(jpass.getPassword())));
-            jd.dispose();
-            JOptionPane.showMessageDialog(rootPane, "Password reset sucessfull!!");
+            String pass = new String(jpass.getPassword());
+            if (isValidPassword(pass)){
+                updatePassword(Hashing.hashPassword(pass), username);
+                jd.dispose();
+                JOptionPane.showMessageDialog(rootPane, "Password reset sucessfull!!");
+            } 
+        });
+        JRadioButton showPassword = new JRadioButton("Show Password");
+        add(showPassword);
+
+        // Add action listener to the radio button
+        showPassword.addActionListener((ActionEvent e) -> {
+            if (showPassword.isSelected()) {
+                // Show password
+                jpass.setEchoChar((char) 0);
+            } else {
+                // Hide password
+                jpass.setEchoChar('•');
+            }
         });
         JButton closebtn = new JButton("Close");
         closebtn.addActionListener(e -> {
@@ -278,27 +354,74 @@ public class ForgotPassword extends javax.swing.JDialog
         jd.add(jp);
         jd.pack(); // Adjust dialog size based on contents
         jd.setLocationRelativeTo(null); // Center dialog on screen
-        jd.setVisible(true);
-        
+        jd.setVisible(true);  
     }
-    public void updatePassword(String newPassword){
+    public boolean isValidPassword(String val){
+        if (!LOWERCASE_PATTERN.matcher(val).matches()) {
+            JOptionPane.showMessageDialog(null,"Password must contain at least one lowercase letter.", "invalid password", 0);
+            return false;
+        }
+        if (!UPPERCASE_PATTERN.matcher(val).matches()) {
+            JOptionPane.showMessageDialog(null, "Password must contain at least one uppercase letter.", "invalid password", 0);
+            return false;
+        }
+        if (!DIGIT_PATTERN.matcher(val).matches()) {
+            JOptionPane.showMessageDialog(null,"Password must contain at least one digit.", "invalid password", 0);
+            return false;
+        }
+        if (!SYMBOL_PATTERN.matcher(val).matches()) {
+            JOptionPane.showMessageDialog(null,"Password must contain at least one symbol (@$!%*?&).", "invalid password", 0);
+            return false;
+        }
+        // You can add more rules here, such as length checks.
+        return true;
+    }
+    public boolean isValidEmail(String email){
+        if (!email.matches("^[^@\\s]+@[^@\\s\\.]+\\.[^@\\s]+$")) {
+            JOptionPane.showMessageDialog(null, "Please enter email in format (example@mail.com)", "invalid email address", 0);
+            return false;
+        }
+        return true;
+    }
+    public void updatePassword(String newPassword, String user){
         // Connects to the employees database, extracts and sets the model for JTable for Employee Records
         try{
-            connection = DriverManager.getConnection(Db.URL, Db.USER, Db.PASSWORD);
-            String sql = "UPDATE user SET password = ? WHERE username = 'user1'";
+            connection = Db.getConnection();
+            String sql = "UPDATE user SET password = ? WHERE username = ?";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, newPassword);
+            statement.setString(1, user);
             int rowsUpdated = statement.executeUpdate();
             connection.close();
         }
         catch(SQLException e){
-            JOptionPane.showMessageDialog(null, "Connection was unsuccessful!!");
+            JOptionPane.showMessageDialog(null, "Password verification unsuccessful!", "connection error", 0);
         }
         
     }
+    public boolean doesUsernameExist(String username) {
+        String query = "SELECT COUNT(*) AS count FROM user WHERE username = ?";
+        try (Connection con = Db.getConnection();
+             PreparedStatement preparedStatement = con.prepareStatement(query)) {
+
+            preparedStatement.setString(1, username);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                int count = resultSet.getInt("count");
+                return count > 0;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_sendCode;
+    private javax.swing.JButton btn_usernameSubmit;
     private javax.swing.JButton btn_verifyOTP;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JButton jb_cancel;
     private javax.swing.JButton jb_close;
     private javax.swing.JLabel lbl_email;
@@ -306,5 +429,6 @@ public class ForgotPassword extends javax.swing.JDialog
     private javax.swing.JLabel lbl_verify;
     private javax.swing.JTextField tf_email;
     private javax.swing.JTextField tf_entryOTP;
+    private javax.swing.JTextField tf_username;
     // End of variables declaration//GEN-END:variables
 }

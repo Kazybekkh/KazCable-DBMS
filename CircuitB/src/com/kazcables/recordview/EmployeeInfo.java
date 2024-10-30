@@ -1,18 +1,18 @@
 
 package com.kazcables.recordview;
 
-import com.kazcabels.model.Employee;
-import com.kazcabels.model.Organization;
+import com.kazcables.model.Employee;
+import com.kazcables.model.HierarchyLevel;
+import com.kazcables.model.Organization;
 import java.util.Stack;
 import javax.swing.JOptionPane;
 
 
-public class EmployeeInfo extends javax.swing.JPanel {
-
+public final class EmployeeInfo extends javax.swing.JPanel {
     private final Organization organization;
     private final EmployeeRecords employeeRecords;
-    private Stack<Employee> forward;
-    private Stack<Employee> history;
+    private final Stack<Employee> forward;
+    private final Stack<Employee> history;
     private Employee emp;
     private int currentIndex = -1;
     public EmployeeInfo(Employee emp, Organization organization, EmployeeRecords emprecords) {
@@ -32,7 +32,7 @@ public class EmployeeInfo extends javax.swing.JPanel {
         if (emp!=null){
             lbl_getFirstName.setText(emp.getName());
             lbl_getLastName.setText(emp.getLastName());
-            lbl_getBirthDate.setText(emp.getBirthDate());
+            //lbl_getBirthDate.setText(emp.getStringBirthDate());
             lbl_getEmail.setText(emp.getEmail());
             lbl_getEmp_id.setText(emp.getEmp_Id());
             lbl_getSuper_id.setText("<html><a href=''> "+ emp.getSupervisor_id()+ "</a></html>");
@@ -199,7 +199,7 @@ public class EmployeeInfo extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btn_previous)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btn_remove, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btn_remove, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(27, 27, 27))))))
         );
         layout.setVerticalGroup(
@@ -245,11 +245,17 @@ public class EmployeeInfo extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
+    
     private void lbl_getSuper_idMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_getSuper_idMouseClicked
-        // TODO add your handling code here:
-        if (emp != null && emp.getSupervisor_id()!=null){
-            Employee supervisor = this.organization.searchEmployeeByID(emp.getSupervisor_id());
+        Employee supervisor;
+        
+        if (emp != null && (emp.getSupervisor_id()!=null && !emp.getSupervisor_id().equals("NULL"))){
+            HierarchyLevel level = HierarchyLevel.MANAGEMENT;
+            if (!emp.isSupervisor()){
+                level = HierarchyLevel.EXECUTIVE;
+            }
+            supervisor = this.getOrganization().searchEmployeeByID(emp.getBranch_id(), level, emp.getSupervisor_id());
+            
             if (supervisor!=null){
                 history.push(emp);
                 emp = supervisor;
@@ -263,18 +269,14 @@ public class EmployeeInfo extends javax.swing.JPanel {
 
     private void btn_previousActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_previousActionPerformed
         goBack();
-        
     }//GEN-LAST:event_btn_previousActionPerformed
 
     private void btn_removeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_removeActionPerformed
-        if (emp!=null)
-        {
-            boolean removed = this.organization.removeEmployee(emp.getFullName().toLowerCase());
-            if (removed){
-                JOptionPane.showMessageDialog(null, "Successfully removed " + emp.getFullName());
-                this.employeeRecords.showEmployees();
-                this.employeeRecords.getRemoved().push(emp.getEmp_Id());
-            }
+        boolean removed = false;
+        if (removed){
+            JOptionPane.showMessageDialog(null, "Successfully removed " + emp.getFullName());
+            this.employeeRecords.showEmployees();
+            this.employeeRecords.getRemoved().push(emp);
         }
     }//GEN-LAST:event_btn_removeActionPerformed
 
@@ -301,4 +303,12 @@ public class EmployeeInfo extends javax.swing.JPanel {
     private javax.swing.JLabel lbl_super_id;
     private javax.swing.JTextArea ta_role;
     // End of variables declaration//GEN-END:variables
+
+    public Organization getOrganization() {
+        return organization;
+    }
+
+    public EmployeeRecords getEmployeeRecords() {
+        return employeeRecords;
+    }
 }
