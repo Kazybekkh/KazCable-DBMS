@@ -27,13 +27,13 @@ To run kazCables, ensure you have the following installed:
 
 •	**MySQL (for database management)**
 
-	•	**MySQL Workbench (optional but useful for database visualization and queries)**
+•	**MySQL Workbench** (optional but useful for database visualization and queries)
 
 ## Installation
 
 1.	Clone the Repository:
 
-	`git clone <repository-url>`
+	```git clone <repository-url>```
 
 2.	Database Setup:
 
