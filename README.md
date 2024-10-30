@@ -49,6 +49,10 @@ To run kazCables, ensure you have the following installed:
 
 	•	Open the project in NetBeans or your preferred IDE and run Main.java to launch kazCables.
 
+## Entity Relationship (ER) Diagram 
+![Employees](https://github.com/user-attachments/assets/b3ff399d-f4a8-40fe-8d78-3797fa017d2d)
+
+
 ## Usage
 
 ### Logging In
