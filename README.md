@@ -22,8 +22,11 @@ kazCables is a user-friendly database application designed to store and manage c
 To run kazCables, ensure you have the following installed:
 
 •	**Java Development Kit (JDK) 11 or later**
+
 •	**NetBeans IDE (or any IDE with JavaFX support)**
+
 •	**MySQL (for database management)**
+
 •	**MySQL Workbench (optional but useful for database visualization and queries)**
 
 ## Installation
@@ -57,24 +60,36 @@ Upon launching kazCables, you will be prompted to log in. New users will need cr
 After logging in, you can:
 
 •	**Add New Entries**: Input new employees, suppliers, and other data.
+
 •	**Edit Existing Entries**: Modify any incorrect or updated data.
+
 •	**Delete Entries**: Remove outdated or redundant entries.
+
 •	**Search and Filter**: Use the search bar or filter options to quickly locate specific entries.
 
 ### Security and Authentication
 
 •	**Password Storage**: Passwords are stored in a hashed format (MD5 or SHA-256) in the SQL database.
+
 •	**Password Recovery**: Forgot your password? kazCables sends a random OTP to the registered email for password recovery.
+
 •	For testing, Mailhog and TempMail can be used to simulate email delivery without using a personal email account.
+
 
 ### Technologies Used
 
 •	**JavaFX & Java SceneBuilder**: For a user-friendly and visually organized interface.
+
 •	**Java Swing**: Additional UI components where needed.
+
 •	**MySQL & MySQL Workbench**: For database management.
-•	**NetBeans IDE \ IntelliJ IDEA **: For development and debugging.
+
+•	**NetBeans IDE** \ **IntelliJ IDEA** : For development and debugging.
+
 •	**MD5 & SHA-256 Hashing**: For secure password storage.
+
 •	**Mailhog / TempMail**: For anonymous testing of email features.
+
 
 ## License
 
