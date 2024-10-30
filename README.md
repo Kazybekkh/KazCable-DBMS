@@ -47,7 +47,7 @@ To run kazCables, ensure you have the following installed:
 
 4.	Run the Application:
 
-	•	Open the project in NetBeans or your preferred IDE and run Main.java to launch kazCables.
+	•	Open the project `CircuitB` in NetBeans or your preferred IDE and run Main.java to launch kazCables.
 
 ## Entity Relationship (ER) Diagram 
 ![EER-employee](https://github.com/user-attachments/assets/9abb22d8-b7a6-4cf0-bc9b-98ffa5c372ba)
