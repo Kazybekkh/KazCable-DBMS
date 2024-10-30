@@ -95,9 +95,6 @@ After logging in, you can:
 •	**Mailhog / TempMail**: For anonymous testing of email features.
 
 
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
 
 
 
