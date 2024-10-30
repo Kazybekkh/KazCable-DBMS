@@ -14,7 +14,8 @@ kazCables is a user-friendly database application designed to store and manage c
 •	**Email Integration**: Password recovery via OTP sent to the registered email address.
     
 •	**Anonymous Testing**: Supports public testing using tools like Mailhog and TempMail.
-
+## Design Architecture
+To get a better feel of app's design and functionality, please refer to the directory (`\DesignDiagrams\`) to see Class/Entity and UML diagrams
 ## Getting Started
 
 ### Prerequisites
