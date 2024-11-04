@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="kazCables">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/CircuitB/dist/kazCables.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

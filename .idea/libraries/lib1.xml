@@ -1,0 +1,19 @@
+<component name="libraryTable">
+  <library name="lib1">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/CircuitB/lib/rs2xml(1).jar!/" />
+      <root url="jar://$PROJECT_DIR$/CircuitB/lib/commons-dbutils-1.8.1-javadoc.jar!/" />
+      <root url="jar://$PROJECT_DIR$/CircuitB/lib/mail.jar!/" />
+      <root url="jar://$PROJECT_DIR$/CircuitB/lib/commons-dbutils-1.8.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/CircuitB/lib/rs2xml.jar!/" />
+      <root url="jar://$PROJECT_DIR$/CircuitB/lib/mysql-connector-j-8.3.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/CircuitB/lib/commons-dbutils-1.8.1-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/CircuitB/lib/commons-dbutils-1.8.1-sources(1).jar!/" />
+      <root url="jar://$PROJECT_DIR$/CircuitB/lib/commons-dbutils-1.8.1-test-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/CircuitB/lib/commons-dbutils-1.8.1-tests.jar!/" />
+      <root url="jar://$PROJECT_DIR$/CircuitB/lib/commons-dbutils-1.8.1-javadoc(1).jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

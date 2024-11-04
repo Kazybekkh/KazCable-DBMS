@@ -1,0 +1,33 @@
+<component name="libraryTable">
+  <library name="junit_5">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/CircuitB/lib/junit_5/junit-jupiter-api-5.6.0-javadoc(2).jar!/" />
+      <root url="jar://$PROJECT_DIR$/CircuitB/lib/junit_5/junit-jupiter-api-5.6.0(2).jar!/" />
+      <root url="jar://$PROJECT_DIR$/CircuitB/lib/junit_5/junit-jupiter-api-5.6.0-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/CircuitB/lib/junit_5/junit-jupiter-engine-5.6.0-javadoc(2).jar!/" />
+      <root url="jar://$PROJECT_DIR$/CircuitB/lib/junit_5/junit-jupiter-params-5.6.0-javadoc(1).jar!/" />
+      <root url="jar://$PROJECT_DIR$/CircuitB/lib/junit_5/junit-jupiter-api-5.6.0-sources(2).jar!/" />
+      <root url="jar://$PROJECT_DIR$/CircuitB/lib/junit_5/junit-jupiter-engine-5.6.0-javadoc(1).jar!/" />
+      <root url="jar://$PROJECT_DIR$/CircuitB/lib/junit_5/junit-jupiter-api-5.6.0(1).jar!/" />
+      <root url="jar://$PROJECT_DIR$/CircuitB/lib/junit_5/junit-jupiter-engine-5.6.0-sources(2).jar!/" />
+      <root url="jar://$PROJECT_DIR$/CircuitB/lib/junit_5/junit-jupiter-api-5.6.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/CircuitB/lib/junit_5/junit-jupiter-params-5.6.0-sources(1).jar!/" />
+      <root url="jar://$PROJECT_DIR$/CircuitB/lib/junit_5/junit-jupiter-params-5.6.0-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/CircuitB/lib/junit_5/junit-jupiter-params-5.6.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/CircuitB/lib/junit_5/junit-jupiter-params-5.6.0-javadoc(2).jar!/" />
+      <root url="jar://$PROJECT_DIR$/CircuitB/lib/junit_5/junit-jupiter-params-5.6.0-sources(2).jar!/" />
+      <root url="jar://$PROJECT_DIR$/CircuitB/lib/junit_5/junit-jupiter-engine-5.6.0-javadoc.jar!/" />
+      <root url="jar://$PROJECT_DIR$/CircuitB/lib/junit_5/junit-jupiter-engine-5.6.0-sources(1).jar!/" />
+      <root url="jar://$PROJECT_DIR$/CircuitB/lib/junit_5/junit-jupiter-params-5.6.0-javadoc.jar!/" />
+      <root url="jar://$PROJECT_DIR$/CircuitB/lib/junit_5/junit-jupiter-api-5.6.0-javadoc(1).jar!/" />
+      <root url="jar://$PROJECT_DIR$/CircuitB/lib/junit_5/junit-jupiter-params-5.6.0(2).jar!/" />
+      <root url="jar://$PROJECT_DIR$/CircuitB/lib/junit_5/junit-jupiter-engine-5.6.0-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/CircuitB/lib/junit_5/junit-jupiter-engine-5.6.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/CircuitB/lib/junit_5/junit-jupiter-params-5.6.0(1).jar!/" />
+      <root url="jar://$PROJECT_DIR$/CircuitB/lib/junit_5/junit-jupiter-api-5.6.0-javadoc.jar!/" />
+      <root url="jar://$PROJECT_DIR$/CircuitB/lib/junit_5/junit-jupiter-api-5.6.0-sources(1).jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
